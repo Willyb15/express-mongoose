@@ -1,4 +1,4 @@
-# Express,js with Mongoose
+# Express.js with Mongoose
 ###Getting Express.js and configuring mongoose
 ###Get Express configured
 ```
