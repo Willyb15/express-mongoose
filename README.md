@@ -1,5 +1,5 @@
 # Express.js with Mongoose and Angular
-###Getting Express.js and configuring Mongoose
+###Installing Express.js, configuring Mongoose, using Angular.js as front-end
 ###Get Express configured in back-end folder
 ```
 npm init
