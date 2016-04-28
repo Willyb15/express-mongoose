@@ -7,7 +7,7 @@ npm install express --save
 express
 npm install
 ```
-###Created index.html in Front-End folder with and added functions with Angular
+###Created index.html with Angular
 ```html
 <body ng-controller="studentController">
 
@@ -18,24 +18,20 @@ npm install
 		{{student}}
 	</li>
 ```
-###Created controller.js file to define our functions in front-end
+###Created controller.js file to define our functions
 ```js
 var studentApp = angular.module('studentApp', []);
 studentApp.controller('studentController', function($scope, $http){
-
 	//On load, run getStudentsFromApi and send it the studnets path
 	getStudentsFromApi('/students/default');	
-
-	//On click of the sort button, get the student list from the studetns path
+	//On click of the sort button, get the student list from the students path
 	$scope.sortAlph = function(){
 		getStudentsFromApi('/students/sort');	
 	}
-
 	//On click of the reverse button, get the student list from the studetns/reverse path
 	$scope.reverseSort = function(){
 		getStudentsFromApi('/students/reverse');
 	}
-
 	//the getStudents function that takes teh URL we are after
 	function getStudentsFromApi(urlEnding){
 		$http({method: 'GET', url: 'http://localhost:3050'+urlEnding}).then(
