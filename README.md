@@ -45,7 +45,7 @@ studentApp.controller('studentController', function($scope, $http){
 	}
 });
 ```
-### Configuring our backend - Defined Routes and MongoDB in the index.js folder
+### Configuring our backend - configure Express and MongoDB in the index.js folder
 ```js
 var express = require('express');
 var router = express.Router();
@@ -53,6 +53,9 @@ var mongoose = require('mongoose');
 var mongoUrl = "mongodb://localhost:27017/btb";
 var connection = mongoose.connect(mongoUrl);
 var Student = require('../models/students');
+```
+###Then define our Route in index.js
+```js
 /* GET home page. */
 router.get('/students/:sortMethod', function(req, res, next) {
 	Student.find({}, function(error, document){
