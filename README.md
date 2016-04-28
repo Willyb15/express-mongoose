@@ -1,13 +1,55 @@
-# Express.js with Mongoose
-###Getting Express.js and configuring mongoose
-###Get Express configured
+# Express.js with Mongoose and Angular
+###Getting Express.js and configuring Mongoose
+###Get Express configured in back-end folder
 ```
 npm init
 npm install express --save
 express
 npm install
 ```
-###Put MongoDB into the index.js folder
+###Created index.html in Front-End folder with and added functions with Angular
+```html
+<body ng-controller="studentController">
+
+	<button class="btn btn-primary" ng-click="sortAlph()">Sort Alphabetically</button>
+	<button class="btn btn-danger" ng-click="reverseSort()">Sort in Reverse</button>
+
+	<li ng-repeat="student in studentList track by $index">
+		{{student}}
+	</li>
+```
+###Created controller.js file to define our functions in front-end
+```js
+var studentApp = angular.module('studentApp', []);
+studentApp.controller('studentController', function($scope, $http){
+
+	//On load, run getStudentsFromApi and send it the studnets path
+	getStudentsFromApi('/students/default');	
+
+	//On click of the sort button, get the student list from the studetns path
+	$scope.sortAlph = function(){
+		getStudentsFromApi('/students/sort');	
+	}
+
+	//On click of the reverse button, get the student list from the studetns/reverse path
+	$scope.reverseSort = function(){
+		getStudentsFromApi('/students/reverse');
+	}
+
+	//the getStudents function that takes teh URL we are after
+	function getStudentsFromApi(urlEnding){
+		$http({method: 'GET', url: 'http://localhost:3050'+urlEnding}).then(
+			function successCallback(response){
+				$scope.studentList = response.data;
+			}, function errorCallback(response){
+				console.log(response);
+				$scope.studentList = response;
+			}
+		);
+	}
+});
+```
+### Defined Routes and MongoDB in the index.js folder
 ```js
 var express = require('express');
 var router = express.Router();
@@ -15,6 +57,24 @@ var mongoose = require('mongoose');
 var mongoUrl = "mongodb://localhost:27017/btb";
 var connection = mongoose.connect(mongoUrl);
 var Student = require('../models/students');
+
+/* GET home page. */
+router.get('/students/:sortMethod', function(req, res, next) {
+
+	Student.find({}, function(error, document){
+		console.log(document);
+	});
+
+	if(req.params.sortMethod == "sort"){
+		students.sort()	
+	}else if(req.params.sortMethod == "reverse"){
+		students.sort()	
+	  	students.reverse();
+  	}
+  	res.json(students);
+});
+
+module.exports = router;
 ```
 ###Created Models folder with students.js Where we configured Mongoose
 ```js
