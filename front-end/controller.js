@@ -7,12 +7,12 @@ studentApp.controller('studentController', function($scope, $http){
 	//On click of the sort button, get the student list from the studetns path
 	$scope.sortAlph = function(){
 		getStudentsFromApi('/students/sort');	
-	}
+	};
 
 	//On click of the reverse button, get the student list from the studetns/reverse path
 	$scope.reverseSort = function(){
 		getStudentsFromApi('/students/reverse');
-	}
+	};
 
 	//the getStudents function that takes teh URL we are after
 	function getStudentsFromApi(urlEnding){
