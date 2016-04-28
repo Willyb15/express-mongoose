@@ -18,7 +18,7 @@ npm install
 		{{student}}
 	</li>
 ```
-###Created controller.js file to define our functions
+###Created controller.js file to define our functions and make $http get requests
 ```js
 var studentApp = angular.module('studentApp', []);
 studentApp.controller('studentController', function($scope, $http){
@@ -45,7 +45,7 @@ studentApp.controller('studentController', function($scope, $http){
 	}
 });
 ```
-### Defined Routes and MongoDB in the index.js folder
+### Configuring our backend - Defined Routes and MongoDB in the index.js folder
 ```js
 var express = require('express');
 var router = express.Router();
@@ -53,14 +53,11 @@ var mongoose = require('mongoose');
 var mongoUrl = "mongodb://localhost:27017/btb";
 var connection = mongoose.connect(mongoUrl);
 var Student = require('../models/students');
-
 /* GET home page. */
 router.get('/students/:sortMethod', function(req, res, next) {
-
 	Student.find({}, function(error, document){
 		console.log(document);
 	});
-
 	if(req.params.sortMethod == "sort"){
 		students.sort()	
 	}else if(req.params.sortMethod == "reverse"){
@@ -69,10 +66,9 @@ router.get('/students/:sortMethod', function(req, res, next) {
   	}
   	res.json(students);
 });
-
 module.exports = router;
 ```
-###Created Models folder with students.js Where we configured Mongoose
+###Created Models folder with students.js - Where we configure Mongoose
 ```js
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
