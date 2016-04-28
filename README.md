@@ -54,6 +54,7 @@ var mongoUrl = "mongodb://localhost:27017/btb";
 var connection = mongoose.connect(mongoUrl);
 var Student = require('../models/students');
 ```
+####Now student is a module that can be exported and used. See below ex. Students.find()
 ###Then define our Route in index.js
 ```js
 /* GET home page. */
