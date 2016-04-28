@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+	<title></title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script type="text/javascript" src="controller.js"></script>
+</head>
+<body ng-controller="studentController">
+
+	<button class="btn btn-primary" ng-click="sortAlph()">Sort Alphabetically</button>
+	<button class="btn btn-danger" ng-click="reverseSort()">Sort in Reverse</button>
+
+	<li ng-repeat="student in studentList track by $index">
+		{{student}}
+	</li>
+
+</body>
+</html>
