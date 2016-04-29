@@ -1,4 +1,4 @@
-# Express.js with Mongoose and Angular
+# Express.js with Mongoose and Angular and Multer
 ###Installing Express.js, configuring Mongoose, using Angular.js as front-end
 ###Get Express configured in back-end folder
 ```
