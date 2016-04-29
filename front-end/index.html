@@ -13,6 +13,11 @@
 	<button class="btn btn-primary" ng-click="sortAlph()">Sort Alphabetically</button>
 	<button class="btn btn-danger" ng-click="reverseSort()">Sort in Reverse</button>
 
+	<form action="http://localhost:3050/uploads" method="post" enctype="multipart/form-data">
+		<input type="file" name="uploadedFile">
+		<input type="submit" class="btn btn-primary" value="Submit the file">
+	</form>
+
 	<li ng-repeat="student in studentList track by $index">
 		{{student}}
 	</li>

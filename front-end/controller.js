@@ -14,10 +14,11 @@ studentApp.controller('studentController', function($scope, $http){
 		getStudentsFromApi('/students/reverse');
 	};
 
-	//the getStudents function that takes teh URL we are after
+	//the getStudents function that takes the URL we are after
 	function getStudentsFromApi(urlEnding){
 		$http({method: 'GET', url: 'http://localhost:3050'+urlEnding}).then(
 			function successCallback(response){
+				console.log(response);
 				$scope.studentList = response.data;
 			}, function errorCallback(response){
 				console.log(response);
