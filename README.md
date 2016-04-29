@@ -54,6 +54,16 @@ var mongoUrl = "mongodb://localhost:27017/btb";
 var connection = mongoose.connect(mongoUrl);
 var Student = require('../models/students');
 ```
+###Created Models folder with students.js - Where we configure Mongoose
+```js
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var Student = new Schema({
+	name: String,
+	row: String
+});
+module.exports = mongoose.model('Student', Student);
+```
 ####Now student is a module that can be exported and used. See below ex. Students.find()
 ###Then define our Route in index.js
 ```js
@@ -72,17 +82,6 @@ router.get('/students/:sortMethod', function(req, res, next) {
 });
 module.exports = router;
 ```
-###Created Models folder with students.js - Where we configure Mongoose
-```js
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var Student = new Schema({
-	name: String,
-	row: String
-});
-module.exports = mongoose.model('Student', Student);
-```
-
 ##Added multer from npm to upload files
 ###In HTML added form tags
 ```html
