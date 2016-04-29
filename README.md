@@ -80,6 +80,40 @@ var Student = new Schema({
 	name: String,
 	row: String
 });
-
 module.exports = mongoose.model('Student', Student);
 ```
+
+##Added multer from npm to upload files
+###In HTML added form tags
+```html
+	<form action="http://localhost:3050/uploads" method="post" enctype="multipart/form-data">
+		<input type="file" name="uploadedFile">
+		<input type="submit" class="btn btn-primary" value="Submit the file">
+	</form>
+```
+###In console ran
+```
+npm install multer
+```
+###In index.js configured Multer
+```js
+var multer = require('multer');
+var fs = require('fs');
+var upload = multer({dest: 'uploads/'});
+var type = upload.single('uploadedFile');
+
+router.post('/uploads', type, function(req, res, next){
+	// res.json(req.file);
+	var target_path = 'public/images/' + req.file.originalname;
+	fs.readFile(req.file.path, function(error, data){
+		fs.writeFile(target_path, data, function(error){
+			if(error){
+				res.json('There was an error. ' + error);
+			}else{
+				res.json('Sucess!');
+			}
+		});
+	});
+});
+```
+
